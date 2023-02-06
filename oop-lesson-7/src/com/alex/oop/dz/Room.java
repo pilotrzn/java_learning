@@ -2,26 +2,24 @@ package com.alex.oop.dz;
 
 public class Room {
     private boolean isEntrace;
-    private float square;
+    private int roomNumber;
 
-    public Room(boolean isEntrace) {
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public Room(boolean isEntrace, int roomNumber) {
         this.isEntrace = isEntrace;
+        this.roomNumber = roomNumber;
     }
 
     public boolean isEntrace() {
         return isEntrace;
     }
 
-    public void setEntrace(boolean entrace) {
-        isEntrace = entrace;
-    }
-
     public void print() {
-        String roomType = "Проходная";
-        if (!this.isEntrace()) {
-            roomType = "Не проходная";
-        }
-        System.out.println(roomType);
+        String roomType = (!this.isEntrace)? "Проходная": "Не проходная";
+        System.out.println("Комната " + this.getRoomNumber() + " " + roomType);
     }
 
 }
