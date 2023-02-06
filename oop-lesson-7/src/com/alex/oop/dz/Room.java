@@ -2,6 +2,7 @@ package com.alex.oop.dz;
 
 public class Room {
     private boolean isEntrace;
+    private float square;
 
     public Room(boolean isEntrace) {
         this.isEntrace = isEntrace;
