@@ -15,19 +15,19 @@ package com.alex.oop.dz;
 
 public class BuildHouseRunner {
     public static void main(String[] args) {
-        Stage stage = new Stage(4, 4);
-        stage.print();
+        //Stage stage = new Stage(4, 4);
+        //stage.print();
         //stage.printAllInformation();
 
-        Flat flat = new Flat(23, 3);
-        flat.print();
+        //Flat flat = new Flat(23, 3);
+        //flat.print();
         //flat.printAllinformation();
 
-        Room room = new Room(false,2);
-        room.print();
+        //Room room = new Room(false,2);
+        //room.print();
 
-        House house = new House(12, 10, 5);
-        house.print();
+        House house = new House(12, 22, 6);
+       // house.print();
         house.printAllInformation();
 
     }
