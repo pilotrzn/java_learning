@@ -28,12 +28,12 @@ public class Task {
             arrSize += (isNumber(value.substring(i, i + 1))) ? 1 : 0;
         }
         int[] result = new int[arrSize];
-        String subValue;
+        String symbol;
         int counter = 0;
         for (int i = 0; i < value.length(); i++) {
-            subValue = value.substring(i, i + 1);
-            if (isNumber(subValue)) {
-                result[counter] = Integer.parseInt(subValue);
+            symbol = value.substring(i, i + 1);
+            if (isNumber(symbol)) {
+                result[counter] = Integer.parseInt(symbol);
                 counter++;
             }
         }
