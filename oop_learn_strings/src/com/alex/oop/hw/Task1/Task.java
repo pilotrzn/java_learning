@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class Task {
     public static void main(String[] args) {
-        String str = "saDd rtR QqQ R333vDcsX";
+        String str = "saD3d rrrrrRRRRt11R Qq3Q    R333vDcsX";
         System.out.println(format(str));
     }
 
@@ -20,13 +20,15 @@ public class Task {
         if (Objects.equals(value, "")) {
             return "Строка не задана";
         }
-        char[] str = value.toLowerCase().toCharArray();
-        char current = str[0];
-        StringBuilder result = new StringBuilder().append(current);
-        for (int i = 1; i < str.length; i++) {
-            if (current != str[i] && str[i] != ' ') {
-                result.append(str[i]);
-                current = str[i];
+        String caseValue = value.toLowerCase();
+        String prevSymbol = caseValue.substring(0, 1);
+        StringBuilder result = new StringBuilder().append(!Objects.equals(prevSymbol," ")? prevSymbol:"");
+        for (int i = 1; i < caseValue.length(); i++) {
+            String symbol = caseValue.substring(i, i + 1);
+
+            if (!Objects.equals(prevSymbol,symbol) && !Objects.equals(symbol," ")) {
+                result.append(symbol);
+                prevSymbol = symbol;
             }
         }
         return result.toString().toUpperCase();
