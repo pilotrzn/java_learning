@@ -20,8 +20,6 @@ public class Stage {
 
     private Flat[] createFlats(int flatOnStage) {
         Flat[] flatsArr = new Flat[flatOnStage];
-        // int flatNumber = (stageNumber == 1) ? 1 : stageNumber * flatOnStage -
-        // flatOnStage + 1;
         for (int i = 0; i < flatOnStage; i++) {
             int roomsCount = (i == 0 || i == 2) ? 3 : 2;
             flatsArr[i] = new Flat(flatNumber, roomsCount);
