@@ -9,7 +9,7 @@ public class Computer {
         this.ssd = ssd;
     }
 
-    public void  printState() {
-        System.out.println("Computers RAM: " +  ram.getValue() + ", SSD: " + ssd.getValue());
+    public void printState() {
+        System.out.println("Computers RAM: " + ram.getValue() + ", SSD: " + ssd.getValue());
     }
 }
