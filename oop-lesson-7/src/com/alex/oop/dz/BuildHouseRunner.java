@@ -26,8 +26,11 @@ public class BuildHouseRunner {
         //Room room = new Room(false,2);
         //room.print();
 
+
+
+
         House house = new House(12, 22, 6);
-       // house.print();
+        // house.print();
         house.printAllInformation();
 
     }

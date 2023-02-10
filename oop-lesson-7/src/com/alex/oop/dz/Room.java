@@ -18,7 +18,7 @@ public class Room {
     }
 
     public void print() {
-        String roomType = (!this.isEntrace)? "Проходная": "Не проходная";
+        String roomType = (!this.isEntrace) ? "Проходная" : "Не проходная";
         System.out.println("Комната " + this.getRoomNumber() + " " + roomType);
     }
 
