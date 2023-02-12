@@ -6,12 +6,8 @@ public class Nominal100 {
     public final int NOMINAL = 100;
 
     public Nominal100(int count) {
-        this.count = count;
-        setSumm();
-    }
-
-    private void setSumm() {
-        this.summ = count * NOMINAL;
+        this.count += count;
+        this.summ += count * NOMINAL;
     }
 
     public int getSumm() {
@@ -23,7 +19,7 @@ public class Nominal100 {
     }
 
     public void setCount(int count) {
-        this.count = count;
-        setSumm();
+        this.count += count;
+        this.summ += count * NOMINAL;
     }
 }

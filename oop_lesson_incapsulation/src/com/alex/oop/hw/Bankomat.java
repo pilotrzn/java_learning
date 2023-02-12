@@ -1,45 +1,62 @@
 package com.alex.oop.hw;
 
+import java.util.Objects;
+
 public class Bankomat {
-    private Nominal20 nominal20;
-    private int count20Bill;
-    private int count50Bill;
-    private int count100Bill;
-    private Nominal50 nominal50;
-    private Nominal100 nominal100;
-
-
-
+    private Nominal20 nominalTwenty;
+    private Nominal50 nominalFifty;
+    private Nominal100 nominalHundred;
     private int totalBalance;
-
+    private static int accountId = 0;
     private Account[] accounts;
 
-    public Bankomat() {
-        accounts = new Account[1000];
-        this.nominal100 = new Nominal100(0);
-        this.nominal50 = new Nominal50(0);
-        this.nominal20 = new Nominal20(0);
+    public Bankomat(int nominalTwenty, int nominalFifty, int nominalHundred) {
+        this.nominalTwenty = new Nominal20(nominalTwenty);
+        this.nominalFifty = new Nominal50(nominalFifty);
+        this.nominalHundred = new Nominal100(nominalHundred);
+        updateBalance();
+        accounts = new Account[100];
+    }
+
+    public void loadMoney(int nominalTwenty, int nominalFifty, int nominalHundred) {
+        this.nominalTwenty.setCount(nominalTwenty);
+        this.nominalFifty.setCount(nominalFifty);
+        this.nominalHundred.setCount(nominalHundred);
         updateBalance();
     }
 
-    public void accountAdd(int accountId) {
-        accounts[accountId] = new Account(accountId);
+    public void accountAdd(String accountName) {
+        accounts[accountId] = new Account(accountName, accountId);
+        accountId++;
     }
 
     private void updateBalance() {
-        this.totalBalance = nominal20.getSumm() + nominal50.getSumm() + nominal100.getSumm();
+        this.totalBalance = nominalTwenty.getSumm() + nominalFifty.getSumm() + nominalHundred.getSumm();
     }
 
-    public void Deposit(int accountId, int billCount, int billNominal) {
-        switch (billNominal) {
-            case 20 -> nominal20.setCount(billCount);
-            case 50 -> nominal50.setCount(billCount);
-            case 100 -> nominal100.setCount(billCount);
+    public void Deposit(String accountName, int billCount, int billNominal) {
+        int accountId = getAccountId(accountName);
+        if (accountId != -1) {
+            switch (billNominal) {
+                case 20 -> nominalTwenty.setCount(billCount);
+                case 50 -> nominalFifty.setCount(billCount);
+                case 100 -> nominalHundred.setCount(billCount);
+            }
+            updateBalance();
+            //внесение на счет
+            accounts[accountId].setSumm(billCount * billNominal);
+            accounts[accountId].printInfo();
         }
-        updateBalance();
-        //внесение на счет
-        accounts[accountId].setSumm(billCount * billNominal);
     }
+
+    private int getAccountId(String accountName) {
+        for (Account account : accounts) {
+            if (Objects.equals(account.getAccountName(), accountName))
+                return account.getAccountId();
+        }
+        return -1;
+    }
+
 
     public int Debet() {
         int result = 0;
@@ -51,7 +68,7 @@ public class Bankomat {
         System.out.println("В банкомете " + this.totalBalance + " рублёв");
     }
 
-    public void ShowAccountSumm(int accountId) {
-        System.out.println("Счет аккаунта " + accountId + " = " + accounts[accountId].getSumm() + " рублёв");
+    public void ShowAccountSumm(String accountName) {
+        System.out.println("Счет аккаунта " + accountName + " = " + accounts[getAccountId(accountName)].getSumm() + " рублёв");
     }
 }

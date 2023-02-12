@@ -14,8 +14,8 @@ public class Nominal50 {
     }
 
     public void setCount(int count) {
-        this.count = count;
-        this.summ = count * NOMINAL;
+        this.count += count;
+        this.summ += count * NOMINAL;
     }
 
     public Nominal50(int count) {
