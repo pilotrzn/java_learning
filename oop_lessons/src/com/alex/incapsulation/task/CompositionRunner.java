@@ -1,4 +1,4 @@
-package com.alex.intro.task2;
+package com.alex.incapsulation.task;
 
 public class CompositionRunner {
 

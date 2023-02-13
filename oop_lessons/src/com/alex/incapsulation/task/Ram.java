@@ -1,9 +1,8 @@
-package com.alex.intro.task2;
-
-public class SSD {
+package com.alex.incapsulation.task;
+public class Ram {
     private int value;
 
-    public SSD(int value) {
+    public Ram(int value) {
         this.value = value;
     }
 
@@ -14,4 +13,6 @@ public class SSD {
     public void setValue(int value) {
         this.value = value;
     }
+
+
 }
