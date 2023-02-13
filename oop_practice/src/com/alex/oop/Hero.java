@@ -4,6 +4,9 @@ public abstract class Hero {
     private String name;
     private int damage;
 
+    private int health;
+    private boolean isAlive;
+
     public abstract void attackEnemy(Enemy enemy);
 
     public Hero(String name, int damage) {
