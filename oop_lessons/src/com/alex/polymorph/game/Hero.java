@@ -1,4 +1,4 @@
-package com.alex.oop;
+package com.alex.polymorph.game;
 
 public abstract class Hero {
     private String name;

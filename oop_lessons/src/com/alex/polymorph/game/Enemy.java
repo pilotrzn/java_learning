@@ -1,4 +1,4 @@
-package com.alex.oop;
+package com.alex.polymorph.game;
 
 public class Enemy implements Mortal {
     private String name;

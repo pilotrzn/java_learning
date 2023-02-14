@@ -1,6 +1,6 @@
 package com.alex.incapsulation.task;
 
-public class Computer {
+public abstract class Computer implements Printable {
     private Ram ram;
     private SSD ssd;
 
@@ -9,7 +9,19 @@ public class Computer {
         this.ssd = ssd;
     }
 
-    public void printState() {
-        System.out.println("Computers RAM: " + ram.getValue() + ", SSD: " + ssd.getValue());
+    public abstract void load();
+
+    @Override
+    public void print() {
+        System.out.println("RAM: " + ram.getValue() + ", SSD: " + ssd.getValue());
     }
+
+    public Ram getRam() {
+        return ram;
+    }
+    public SSD getSsd() {
+        return ssd;
+    }
+
+
 }

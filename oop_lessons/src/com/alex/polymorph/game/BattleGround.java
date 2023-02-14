@@ -1,4 +1,4 @@
-package com.alex.oop;
+package com.alex.polymorph.game;
 
 public class BattleGround {
     public static void main(String[] args) {

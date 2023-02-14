@@ -1,4 +1,4 @@
-package com.alex.oop;
+package com.alex.polymorph.game;
 
 public class Mage extends Hero {
     public Mage(String name, int damage) {

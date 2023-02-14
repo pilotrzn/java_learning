@@ -1,4 +1,4 @@
-package com.alex.oop;
+package com.alex.polymorph.game;
 
 public class Archer extends Hero{
     public Archer(String name, int damage) {
