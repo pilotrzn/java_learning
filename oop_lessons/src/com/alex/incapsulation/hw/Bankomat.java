@@ -18,12 +18,21 @@ public class Bankomat {
         accounts = new Account[100];
     }
 
-    public void loadMoney(int nominalTwenty, int nominalFifty, int nominalHundred) {
+    public void loadMoneyIncassator(int nominalTwenty, int nominalFifty, int nominalHundred) {
         this.nominalTwenty.setCount(nominalTwenty);
         this.nominalFifty.setCount(nominalFifty);
         this.nominalHundred.setCount(nominalHundred);
         updateBalance();
     }
+
+    public void getMoneyAccount(String accountName, int summ){
+        int accountId = getAccountId(accountName);
+        int countHundred = 0;
+        int countFifty = 0;
+        int countTwenty = 0;
+
+    }
+
 
     public void accountAdd(String accountName) {
         accounts[accountId] = new Account(accountName, accountId);
@@ -34,7 +43,7 @@ public class Bankomat {
         this.totalBalance = nominalTwenty.getSumm() + nominalFifty.getSumm() + nominalHundred.getSumm();
     }
 
-    public void Deposit(String accountName, int billCount, int billNominal) {
+    public void loadMoneyAccount(String accountName, int billCount, int billNominal) {
         int accountId = getAccountId(accountName);
         if (accountId != -1) {
             switch (billNominal) {
@@ -55,13 +64,6 @@ public class Bankomat {
                 return account.getAccountId();
         }
         return -1;
-    }
-
-
-    public int Debet() {
-        int result = 0;
-
-        return result;
     }
 
     public void showBalance() {

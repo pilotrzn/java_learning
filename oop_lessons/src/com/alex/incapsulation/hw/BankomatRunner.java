@@ -10,8 +10,8 @@ public class BankomatRunner {
         bankomat.accountAdd("Сидоров");
         bankomat.accountAdd("Рабинович");
 
-        bankomat.Deposit("Иванов", 15, 20);
-        bankomat.Deposit("Иванов", 20, 50);
+        bankomat.loadMoneyAccount("Иванов", 15, 20);
+        bankomat.loadMoneyAccount("Иванов", 20, 50);
 
         //bankomat.ShowAccountSumm("Иванов");
 
@@ -27,7 +27,7 @@ public class BankomatRunner {
         bankomat.showBalance();
         bankomat.Deposit(8, 2110, 100);
         bankomat.ShowAccountSumm(8);*/
-        bankomat.loadMoney(0,300,1000);
+        //bankomat.loadMoneyIncassator(0,300,1000);
         bankomat.showBalance();
     }
 
