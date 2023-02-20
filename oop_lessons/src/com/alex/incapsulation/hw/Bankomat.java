@@ -3,36 +3,90 @@ package com.alex.incapsulation.hw;
 import java.util.Objects;
 
 public class Bankomat {
-    private Nominal20 nominalTwenty;
-    private Nominal50 nominalFifty;
-    private Nominal100 nominalHundred;
+    private Nominal nominalTwenty;
+    private final int NOMINAL_TWENTY = 20;
+    private Nominal nominalFifty;
+    private final int NOMINAL_FIFTY = 50;
+    private Nominal nominalHundred;
+    private final int NOMINAL_HUNDRED = 100;
     private int totalBalance;
     private static int accountId = 0;
     private Account[] accounts;
 
-    public Bankomat(int nominalTwenty, int nominalFifty, int nominalHundred) {
-        this.nominalTwenty = new Nominal20(nominalTwenty);
-        this.nominalFifty = new Nominal50(nominalFifty);
-        this.nominalHundred = new Nominal100(nominalHundred);
-        updateBalance();
+    public Bankomat() {
+        this.nominalTwenty = new Nominal();
+        this.nominalFifty = new Nominal();
+        this.nominalHundred = new Nominal();
         accounts = new Account[100];
     }
 
-    public void loadMoneyIncassator(int nominalTwenty, int nominalFifty, int nominalHundred) {
-        this.nominalTwenty.setCount(nominalTwenty);
-        this.nominalFifty.setCount(nominalFifty);
-        this.nominalHundred.setCount(nominalHundred);
+
+    public void loadMoneyIncassator(int nominal_Twenty, int nominal_Fifty, int nominal_Hundred) {
+        localUpdater(nominalTwenty, nominal_Twenty, NOMINAL_TWENTY);
+        localUpdater(nominalFifty, nominal_Fifty, NOMINAL_FIFTY);
+        localUpdater(nominalHundred, nominal_Hundred, NOMINAL_HUNDRED);
+        updateBalance();
+        System.out.println("Загрузка денег в банкомат");
+    }
+
+    public void loadMoneyAccount(String accountName, int billCount, int billNominal) {
+        int accountId = getAccountId(accountName);
+        if (accountId != -1) {
+            switch (billNominal) {
+                case NOMINAL_TWENTY -> localUpdater(nominalTwenty, billCount, NOMINAL_TWENTY);
+                case NOMINAL_FIFTY -> localUpdater(nominalFifty, billCount, NOMINAL_FIFTY);
+                case NOMINAL_HUNDRED -> localUpdater(nominalHundred, billCount, NOMINAL_HUNDRED);
+            }
+            updateBalance();
+            //внесение на счет
+            accounts[accountId].setSumm(billCount * billNominal);
+            accounts[accountId].printInfo();
+        }
+    }
+
+    public void getMoneyAccount(String accountName, int summ) {
+        int accountId = getAccountId(accountName);
+
+        if (summ > accounts[accountId].getSumm()) {
+            System.out.println("Недостаточно средств на счету у " + accountName);
+            return;
+        }
+
+        if (summ > this.totalBalance) {
+            System.out.println("Недостаточно средств в банкомате");
+            return;
+        }
+
+        int countCurr = summ / NOMINAL_HUNDRED;
+        int countHundred = (countCurr <= nominalHundred.getCount()) ? countCurr : nominalHundred.getCount();
+
+        countCurr = (summ - countHundred * NOMINAL_HUNDRED) / NOMINAL_FIFTY;
+        int countFifty = (countCurr <= nominalFifty.getCount()) ? countCurr : nominalFifty.getCount();
+
+        countCurr = (summ - countHundred * NOMINAL_HUNDRED - countFifty * NOMINAL_FIFTY) / NOMINAL_TWENTY;
+        int countTwenty = (countCurr <= nominalTwenty.getCount() ? countCurr : nominalTwenty.getCount());
+
+        int summCorr = countHundred * NOMINAL_HUNDRED + countFifty * NOMINAL_FIFTY + countTwenty * NOMINAL_TWENTY;
+
+        if (summCorr != summ) {
+            System.out.println("Недостаточно купюр для выдачи суммы");
+            return;
+        }
+        //обновление кол-ва купюр
+        localUpdater(nominalHundred, -countHundred, NOMINAL_HUNDRED);
+        localUpdater(nominalFifty, -countFifty, NOMINAL_FIFTY);
+        localUpdater(nominalTwenty, -countTwenty, NOMINAL_TWENTY);
+        System.out.println("Снятие денег со счета " + accountName);
+        System.out.println("Сумма к выдаче = " + summ + "");
+        System.out.println("Количество купюр:");
+        System.out.println("100р = " + countHundred);
+        System.out.println("50р = " + countFifty);
+        System.out.println("20р = " + countTwenty);
+
+        accounts[accountId].setSumm(-summ);
+        accounts[accountId].printInfo();
         updateBalance();
     }
-
-    public void getMoneyAccount(String accountName, int summ){
-        int accountId = getAccountId(accountName);
-        int countHundred = 0;
-        int countFifty = 0;
-        int countTwenty = 0;
-
-    }
-
 
     public void accountAdd(String accountName) {
         accounts[accountId] = new Account(accountName, accountId);
@@ -43,20 +97,10 @@ public class Bankomat {
         this.totalBalance = nominalTwenty.getSumm() + nominalFifty.getSumm() + nominalHundred.getSumm();
     }
 
-    public void loadMoneyAccount(String accountName, int billCount, int billNominal) {
-        int accountId = getAccountId(accountName);
-        if (accountId != -1) {
-            switch (billNominal) {
-                case 20 -> nominalTwenty.setCount(billCount);
-                case 50 -> nominalFifty.setCount(billCount);
-                case 100 -> nominalHundred.setCount(billCount);
-            }
-            updateBalance();
-            //внесение на счет
-            accounts[accountId].setSumm(billCount * billNominal);
-            accounts[accountId].printInfo();
-        }
+    private void localUpdater(Nominal nominal, int billcount, int nomvalue) {
+        nominal.updateCash(billcount, nomvalue);
     }
+
 
     private int getAccountId(String accountName) {
         for (Account account : accounts) {
@@ -70,7 +114,7 @@ public class Bankomat {
         System.out.println("В банкомете " + this.totalBalance + " рублёв");
     }
 
-    public void ShowAccountSumm(String accountName) {
+    public void showAccountSumm(String accountName) {
         System.out.println("Счет аккаунта " + accountName + " = " + accounts[getAccountId(accountName)].getSumm() + " рублёв");
     }
 }

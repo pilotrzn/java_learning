@@ -2,7 +2,9 @@ package com.alex.incapsulation.hw;
 
 public class BankomatRunner {
     public static void main(String[] args) {
-        Bankomat bankomat = new Bankomat(200,100,500);
+        Bankomat bankomat = new Bankomat();
+
+        bankomat.loadMoneyIncassator(200,100,2);
         bankomat.showBalance();
 
         bankomat.accountAdd("Иванов");
@@ -10,23 +12,18 @@ public class BankomatRunner {
         bankomat.accountAdd("Сидоров");
         bankomat.accountAdd("Рабинович");
 
+        bankomat.showAccountSumm("Иванов");
         bankomat.loadMoneyAccount("Иванов", 15, 20);
         bankomat.loadMoneyAccount("Иванов", 20, 50);
 
-        //bankomat.ShowAccountSumm("Иванов");
+        bankomat.showAccountSumm("Иванов");
+        bankomat.getMoneyAccount("Иванов",2500);
 
-   /*       bankomat.Deposit(100, 200, 50);
-        bankomat.Deposit(100, 10, 20);
-        bankomat.Deposit(100, 30, 100);
-        bankomat.ShowAccountSumm(100);
+        bankomat.loadMoneyAccount("Сидоров",30,50);
+        bankomat.loadMoneyAccount("Сидоров", 23,20);
 
+        bankomat.getMoneyAccount("Сидоров",1270);
 
-        bankomat.Deposit(101, 230, 50);
-        bankomat.ShowAccountSumm(101);
-
-        bankomat.showBalance();
-        bankomat.Deposit(8, 2110, 100);
-        bankomat.ShowAccountSumm(8);*/
         //bankomat.loadMoneyIncassator(0,300,1000);
         bankomat.showBalance();
     }

@@ -1,6 +1,6 @@
 package com.alex.incapsulation.hw;
 
-public abstract class Nominal {
+public class Nominal {
     private int count;
     private int summ;
 
@@ -8,16 +8,9 @@ public abstract class Nominal {
         return count;
     }
 
-    public Nominal(int count) {
+    public void updateCash(int count, int nominal) {
         this.count += count;
-    }
-
-    public void setCount(int count) {
-        this.count += count;
-    }
-
-    public void setSumm(int summ) {
-        this.summ += summ;
+        this.summ += (count * nominal);
     }
 
     public int getSumm() {
