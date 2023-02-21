@@ -4,7 +4,9 @@ public class BankomatRunner {
     public static void main(String[] args) {
         Bankomat bankomat = new Bankomat();
 
-        bankomat.loadMoneyIncassator(200,100,2);
+        bankomat.loadMoneyIncassator(3000,
+                3,
+                2000);
         bankomat.showBalance();
 
         bankomat.accountAdd("Иванов");
@@ -13,16 +15,16 @@ public class BankomatRunner {
         bankomat.accountAdd("Рабинович");
 
         bankomat.showAccountSumm("Иванов");
-        bankomat.loadMoneyAccount("Иванов", 15, 20);
-        bankomat.loadMoneyAccount("Иванов", 20, 50);
+        bankomat.loadMoneyAccount("Иванов", 100, 20);
+        bankomat.loadMoneyAccount("Иванов", 2, 50);
 
         bankomat.showAccountSumm("Иванов");
-        bankomat.getMoneyAccount("Иванов",2500);
+        bankomat.getMoneyAccount("Иванов",510);
 
-        bankomat.loadMoneyAccount("Сидоров",30,50);
-        bankomat.loadMoneyAccount("Сидоров", 23,20);
+        //bankomat.loadMoneyAccount("Сидоров",30,50);
+        bankomat.loadMoneyAccount("Сидоров", 230,20);
 
-        bankomat.getMoneyAccount("Сидоров",1270);
+        bankomat.getMoneyAccount("Сидоров",280);
 
         //bankomat.loadMoneyIncassator(0,300,1000);
         bankomat.showBalance();

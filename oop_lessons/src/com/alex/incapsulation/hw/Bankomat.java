@@ -10,7 +10,7 @@ public class Bankomat {
     private Nominal nominalHundred;
     private final int NOMINAL_HUNDRED = 100;
     private int totalBalance;
-    private static int accountId = 0;
+    private  int accountId = 0;
     private Account[] accounts;
 
     public Bankomat() {
@@ -69,7 +69,7 @@ public class Bankomat {
         int summCorr = countHundred * NOMINAL_HUNDRED + countFifty * NOMINAL_FIFTY + countTwenty * NOMINAL_TWENTY;
 
         if (summCorr != summ) {
-            System.out.println("Недостаточно купюр для выдачи суммы");
+            System.out.println("Недостаточно купюр для выдачи суммы. Доступная сумма = " + summCorr);
             return;
         }
         //обновление кол-ва купюр

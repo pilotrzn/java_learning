@@ -2,6 +2,7 @@ package com.alex.arrayList.lesson;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ArrayListRunner {
@@ -18,8 +19,15 @@ public class ArrayListRunner {
 
         List<Integer> list = new ArrayList<>(integers);
 
+        List<Integer> list2 = new LinkedList<>();
+        list2.add(23);
+        list2.add(25);
+        list2.add(26);
+        list2.add(28);
+        list2.add(20);
+        printArray(list2);
 
-        printArray(integers);
+        //printArray(integers);
     }
 
     private static void printArray(List<Integer> list){
